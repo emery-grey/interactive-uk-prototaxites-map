@@ -1,0 +1,265 @@
+<html>
+<head>
+<title>Prototaxites & The Secrets of Old Red Sandstone</title>
+
+<style>
+body {
+    background-color: #f3e6f7;
+    margin: 0;
+    padding: 0;
+    font-family: times;
+}
+
+#pagediv {
+    margin: auto;
+    width: 90%;
+    max-width: 1400px;
+}
+
+/* HEADER */
+#headerdiv {
+    background-color: #d10000;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 12px 0;
+    border-radius: 6px;
+}
+h1 {
+    color: white;
+    text-align: center;
+    font-family: verdana;
+    margin: 0;
+}
+
+/* CONTENT */
+#contentdiv {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+}
+h2 {
+    font-style: italic;
+    color: #5a3d6e;
+}
+p {
+    text-align: justify;
+    line-height: 1.5;
+}
+
+/* LEGEND SECTION */
+#cards-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #d10000;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background-color: white;
+    border: 2px solid #c9a7d9;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    padding: 10px 14px;
+    color: white;
+    font-family: verdana;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* APPLY HEX COLORS TO EACH CARD — MATCHING YOUR PALETTE */
+#card-sil .card-header { background-color: #4c35eb; }
+#card-ric .card-header { background-color: #401a7e; }
+#card-wen .card-header { background-color: #702AC9; }
+#card-ludlow .card-header { background-color: #a05bbf; }
+#card-pridoli .card-header { background-color: #d36ba5; }
+#card-lors .card-header { background-color: #e32b40; }
+#card-ag .card-header { background-color: #ff7a3d; }
+#card-ud .card-header { background-color: #ff9a3d; }
+#card-ors .card-header { background-color: #931010; }
+
+.card-header .arrow {
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+.card.open .card-header .arrow {
+    transform: rotate(180deg);
+}
+
+.card-body {
+    display: none;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #333;
+    border-top: 2px solid #eee;
+}
+.card.open .card-body {
+    display: block;
+}
+
+/* MAP */
+#mapdiv {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#mapdiv iframe {
+    width: 100%;
+    height: 600px;
+    border: 3px solid #d10000;
+    border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+<div id="pagediv">
+
+    <div id="headerdiv">
+        <h1>Prototaxites & The Secrets Of The Old Red Sandstone</h1>
+    </div>
+
+    <div id="contentdiv">
+       <h2>The Giant Mystery of the Silurian and Devonian Landscape</h2>
+        <p>The extinct genus <em>Prototaxites</em> is a large eukaryote from approximately 400 million years ago that grew up to 26 feet high. Long debated whether it would be a plant or fungus, it was recently proposed to be something entirely different, a member of an extinct kingdom. </p>
+        <p>During the mid-Silurian, what is now considered the UK was underwater, an environment dominated by shallow marine reefs. As the Caledonian orogeny caused major uplift across the area from roughly 490-390 million years ago, the sea retreated and exposed land to the surface. By the early Devonian the landscape was full of terrestrial ecosystems including braided rivers, alluvial fans, and floodplains. This is where the most fossils were found among the rock units, that is described in more detail by clicking on the cards below in the legend.</p>
+        <p>This data was put together using articles and resources, there was no offical file for prototaxities discovery locations. The rock unit data is from the British Geologic Survey, but the fossil locations are not exact in relation to these units so this is an estimate that requires further study.</p>
+       
+
+    <!-- LEGEND CARDS -->
+    <div id="cards-section">
+        <h2>Rock Unit Legend</h2>
+        <p>* indicates a wider span of time, which refers to less specific depositional periods.</p>
+
+        <div class="cards-grid">
+
+            <!-- Silurian -->
+            <div class="card" id="card-sil" onclick="toggleCard('sil')">
+                <div class="card-header">
+                    Silurian Rocks (443–419 Ma)* <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Deep to marginal marine sediments, cycles of sediment rising and falling from sea currents. Less specific depositional timeframe; 1 fossil found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Riccarton -->
+            <div class="card" id="card-ric" onclick="toggleCard('ric')">
+                <div class="card-header">
+                    Riccarton Group (434–426 Ma) <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Transitional marine to continental, mixed sediments showing a retreat of shallow seas. 1 fossil found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Wenlock -->
+            <div class="card" id="card-wen" onclick="toggleCard('wen')">
+                <div class="card-header">
+                    Wenlock Rocks (433–422 Ma) <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Marine reef deposits of limestone, siltstone, mudstone, and greywacke. 3 fossils found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Ludlow -->
+            <div class="card" id="card-ludlow" onclick="toggleCard('ludlow')">
+                <div class="card-header">
+                    Ludlow Rocks (427–423 Ma) <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Shallow marine to coastal deposits, evidence of lagoons and plant material. Increasing terrestrial influence and oxygenation from the Caledonian orogeny. 1 fossil found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Pridoli -->
+            <div class="card" id="card-pridoli" onclick="toggleCard('pridoli')">
+                <div class="card-header">
+                    Pridoli Rocks (423–419 Ma) <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Deposits from shallow marine and tidal flats, first evidence of red beds and terrestrial ecosystems. 4 fossils found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Lower ORS -->
+            <div class="card" id="card-lors" onclick="toggleCard('lors')">
+                <div class="card-header">
+                    Lower Old Red Sandstone (419–393 Ma)* <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Deltas, alluvial fans, and braided rivers characterized this time. Less specific depositional timeframe; 1 fossil found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Arbuthnott-Garvock -->
+            <div class="card" id="card-ag" onclick="toggleCard('ag')">
+                <div class="card-header">
+                    Arbuthnott–Garvock Group (416–407 Ma) <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Fossil-rich braided river and lake deposits, semi-arid climate with conglomerates, sandstones, and volcanic rocks. Ecosystems influenced by early vascular plants. 5 fossils found relative to this unit.
+                </div>
+            </div>
+
+            <!-- Upper Devonian -->
+            <div class="card" id="card-ud" onclick="toggleCard('ud')">
+                <div class="card-header">
+                    Upper Devonian Rocks (385–359 Ma)* <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Fully established terrestrial ecosystems with rivers, lakes, and floodplains. Less specific depositional timeframe; 5 fossils found relative to this unit.
+                </div>
+            </div>
+
+            <!-- ORS Supergroup -->
+            <div class="card" id="card-ors" onclick="toggleCard('ors')">
+                <div class="card-header">
+                    Old Red Sandstone Supergroup (419–358 Ma)* <span class="arrow">▼</span>
+                </div>
+                <div class="card-body">
+                    Continental basin linked to all red beds from the Silurian to Devonian. Includes rivers, lakes, marine, and desert environments. Red coloration from oxidation. Less specific depositional timeframe; 1 fossil found relative to this unit.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="mapdiv">
+        <h2>Map of Fossil Discovery Locations Relative to Rock Units</h2>
+        <iframe src="protoMap.html"></iframe>
+    </div>
+
+</div>
+
+<script>
+function toggleCard(type) {
+    const card = document.getElementById('card-' + type);
+    if (card) {
+        card.classList.toggle('open');
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+</script>
+
+</body>
+</html>

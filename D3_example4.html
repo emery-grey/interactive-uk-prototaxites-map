@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Paleo-Environments: Prototaxites Era</title>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+        body {
+            font-family: Verdana;
+            margin: 40px;
+            background-color: #FFFFFF ;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: #D3D3D3;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .highlight {
+            border: 3px solid lightpink;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Paleo Environments During the Time of Prototaxites</h1>
+
+<div class="grid">
+
+    <div class="card highlight">
+        <h3> Marine</h3>
+        <p>Warm, stable shallow seas with diverse marine life.</p>
+    </div>
+
+    <div class="card"><h3>Shallow Marine</h3><p>high sea levels with high inland seas, and high-frequency regression and transgressions evident through sedimentary record.</p></div>
+    <div class="card"><h3>Terrestrial</h3><p>The rise of large land plants likely increased atmospheric oxygen and helped create soil, which changed nutrient cycling and potentially fueled Late Devonian marine extinctions The terrestrial landscape was mostly barren, with life restricted to damp coastal regions and wetlands.</p></div>
+    <div class="card"><h3>Fluvial</h3><p>Runderwent a major transformation, shifting from predominantly braided, barren systems to meandering, vegetated river systems, heavily influenced by the evolution of land plants, The landscape was largely barren or sparsely covered with small, moss-like plants, meaning little organic stabilization of soils.</p></div>
+    <div class="card"><h3>Wetlands</h3><p>Was largely restricted to coastal plains, estuaries, and inland areas around water bodies. These were often brackish or saltwater coastal marshes where early vascular plants were anchored to the substrate by rhizoids, not deep roots.</p></div>
+    <div class="card"><h3>Deltaic</h3><p>Following a major extinction, this period saw high sea levels and warm climates. Widespread shallow seas created extensive carbonate platforms with common reef communities involving rugose/tabulate corals and stromatoporoids. Early vascular plants began colonizing coastal lowlands, with initial terrestrial arthropod expansion.</p></div>
+        <div class="card"><h3>Our Focus</h3><p>We are focusing on the UK region because the old red sandstone belt is located in the U.K. and has the most information on protoaxites, sediments, and other fossils</p></div>
+
+</div>
+
+<script>
+
+var paleoData = [
+    { PAL_ENV: "Shallow Marine", count: 12 },
+    { PAL_ENV: "Marine", count: 18 },
+    { PAL_ENV: "Terrestrial", count: 9 },
+    { PAL_ENV: "Fluvial", count: 14 },
+    { PAL_ENV: "Wetlands", count: 11 },
+    { PAL_ENV: "Deltaic", count: 16 }
+];
+
+var w = 600, h = 400;
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("background", "white")
+    .style("padding", "5px")
+    .style("border", "1px solid #ccc")
+    .style("opacity", 0);
+
+var dropdown = d3.select("body")
+    .insert("select", "svg")
+    .on("change", update);
+
+dropdown.selectAll("option")
+    .data(["All"].concat(paleoData.map(d => d.PAL_ENV)))
+    .enter()
+    .append("option")
+    .text(d => d);
+
+var xScale = d3.scaleBand()
+    .domain(paleoData.map(d => d.PAL_ENV))
+    .range([50, 550])
+    .padding(0.2);
+
+var yScale = d3.scaleLinear()
+    .domain([0, d3.max(paleoData, d => d.count)])
+    .range([275, 50]);
+
+svg.append("g")
+    .attr("transform", "translate(0,275)")
+    .call(d3.axisBottom(xScale));
+
+svg.append("g")
+    .attr("transform", "translate(50,0)")
+    .call(d3.axisLeft(yScale));
+
+var maxValue = d3.max(paleoData, d => d.count);
+
+var bars = svg.selectAll("rect")
+    .data(paleoData)
+    .enter()
+    .append("rect")
+    .attr("x", d => xScale(d.PAL_ENV))
+    .attr("y", d => yScale(d.count))
+    .attr("width", xScale.bandwidth())
+    .attr("height", d => 275 - yScale(d.count))
+    .attr("fill", d => d.count === maxValue ? "pink" : "steelblue")
+
+    .on("mouseover", function(event, d){
+        tooltip.style("opacity", 1)
+            .html(`${d.PAL_ENV}<br>Count: ${d.count}`)
+            .style("left", event.pageX + "px")
+            .style("top", event.pageY + "px");
+    })
+
+    .on("mouseout", function(){
+        tooltip.style("opacity", 0);
+    });
+
+function update(){
+    var selected = dropdown.property("value");
+
+    bars.style("opacity", d => {
+        if(selected === "All") return 1;
+        return d.PAL_ENV === selected ? 1 : 0.2;
+    });
+}
+ 
+</script>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+   
+    </style>
+</head>
+
+<script>
+
+var regionsData = [
+    { REGION: "Old Red Sandstone ", count: 9 },
+    { REGION: "Rhenish Devonian ", count: 5 },
+    { REGION: "Belgian Ardenne Basin", count: 6 },
+    { REGION: "Podolian Basin", count: 3 },
+    { REGION: "Appalachian Devonian Redbeds", count: 3 }
+];
+
+var w2 = 600, h2 = 400;
+
+var svg2 = d3.select("body")
+    .append("svg")
+    .attr("width", w2)
+    .attr("height", h2);
+
+var tooltip2 = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("background", "white")
+    .style("padding", "5px")
+    .style("border", "1px solid #ccc")
+    .style("opacity", 0);
+
+var dropdown2 = d3.select("body")
+    .insert("select", "svg")
+    .on("change", update2);
+
+dropdown2.selectAll("option")
+    .data(["All"].concat(regionsData.map(d => d.REGION)))
+    .enter()
+    .append("option")
+    .text(d => d);
+
+var xScale2 = d3.scaleBand()
+    .domain(regionsData.map(d => d.REGION))
+    .range([50, 550])
+    .padding(0.2);
+
+var yScale2 = d3.scaleLinear()
+    .domain([0, d3.max(regionsData, d => d.count)])
+    .range([275, 50]);
+
+svg2.append("g")
+    .attr("transform", "translate(0,275)")
+    .call(d3.axisBottom(xScale2))
+    .selectAll("text")
+    .attr("transform", "rotate(-20)")
+    .style("text-anchor", "end");
+
+svg2.append("g")
+    .attr("transform", "translate(50,0)")
+    .call(d3.axisLeft(yScale2));
+
+var maxValue2 = d3.max(regionsData, d => d.count);
+
+var bars2 = svg2.selectAll("rect")
+    .data(regionsData)
+    .enter()
+    .append("rect")
+    .attr("x", d => xScale2(d.REGION))
+    .attr("y", d => yScale2(d.count))
+    .attr("width", xScale2.bandwidth())
+    .attr("height", d => 275 - yScale2(d.count))
+    .attr("fill", d => d.count === maxValue2 ? "pink" : "steelblue")
+
+    .on("mouseover", function(event, d){
+        tooltip2.style("opacity", 1)
+            .html(`${d.REGION}<br>Count: ${d.count}`)
+            .style("left", event.pageX + "px")
+            .style("top", event.pageY + "px");
+    })
+
+    .on("mouseout", function(){
+        tooltip2.style("opacity", 0);
+    });
+
+function update2(){
+    var selected = dropdown2.property("value");
+
+    bars2.style("opacity", d => {
+        if(selected = "All") return 1;
+        return d.REGION = selected ? 1 : 0.2;
+    });
+}
+
+</script>
+
+</body>
+</html>

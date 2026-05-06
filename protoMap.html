@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Mapbox Example 7- Denver Bike Lanes</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=yes" />
+        <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet" />
+        <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+        <!-- Mapbox Geocoder (address search) - plug-and-play Mapbox plugin -->
+        <link
+            rel="stylesheet"
+            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+            type="text/css" />
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            mapboxgl.accessToken =
+                "pk.eyJ1IjoidGF1c3RpbjIiLCJhIjoiY21sc2JhbG85MDRnZDNmcHhoN21uMG0xMyJ9.Bo6qJ_zCrlu6_kE15KlaAw";
+
+            var map = new mapboxgl.Map({
+                container: "map",
+                style: "mapbox://styles/taustin2/cmonscjum000a01sp90hz7eti",
+                center: [-3, 55],
+                zoom: 4.5
+            });
+
+            // Address search bar - uses Mapbox Geocoder plugin
+            // This lets users type any address and fly to it on the map
+            /*var geocoder = new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                placeholder: "Search your address...",
+                bbox: [53.017, -1.612, 55.017, -3.612], // Bounding box limits search to Colorado Springs area
+                proximity: {
+                    longitude: 54.017,
+                    latitude: -2.612
+                }
+            });
+
+            // Add the search bar to the top-left of the map
+            map.addControl(geocoder, "top-left");
+
+            // Add zoom and rotation controls
+            map.addControl(new mapboxgl.NavigationControl());
+            */
+        </script>
+    </body>
+</html>

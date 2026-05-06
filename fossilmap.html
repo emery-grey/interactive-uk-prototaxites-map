@@ -1,0 +1,1877 @@
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Prototaxites and Other Devonian and Silurian Fossils Map</title>
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+
+<style>
+    /* Map overlay style sheet  */
+   .map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 625px;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    }
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .map-overlay h2 {
+        line-height: 24px;
+        display: block;
+        margin: 0 0 10px;
+    }
+    .map-overlay h3{
+        line-height: 20px;
+        display: block;
+        margin: 0 0 10px;
+    }
+    .map-overlay p.credit {
+       margin: 0;
+       padding: 0;
+    }
+    .legend {
+        background-color: #fff;
+        border-radius: 3px;
+        top: 80px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font:
+            12px/20px 'Helvetica Neue',
+            Arial,
+            Helvetica,
+            sans-serif;
+        padding: 10px;
+        position: absolute;
+        left: 20px;
+        z-index: 1;
+    }
+    .legend h3{
+        margin: 0 0 12px;
+    }
+    .legend h4 {
+        margin: 0 0 10px;
+    }
+    .legend-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom:5px;
+    margin-top:5px;
+  }
+ .plant-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #18d848);
+    margin-bottom: 5px;
+  }
+  .angiosperms-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #e5fd72);
+    margin-bottom: 5px;
+  }
+  .bryophyta-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #c7d20e);
+    margin-bottom: 5px;
+  }
+   .lycophyta-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e1e5e1, #72ff44);
+    margin-bottom: 5px;
+  } 
+  .sphenophyta-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #00b426);
+    margin-bottom: 5px;
+  }
+  .undiff-plant-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #acc874);
+    margin-bottom: 5px;
+  }
+  .arth-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #f5860e);
+    margin-bottom: 5px;
+  }
+  .chelicerata-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #b65e00);
+    margin-bottom: 5px;
+  }
+.crustacea-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #fcb459);
+    margin-bottom: 5px;
+  } 
+.euthy-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #f21313);
+    margin-bottom: 5px;
+  }
+  .myriapoda-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #ff5656);
+    margin-bottom: 5px;
+  }
+  .trilobita-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #9f0505);
+    margin-bottom: 5px;
+  }
+  .ostracoda-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #f16d37);
+    margin-bottom: 5px;
+  }
+  .undiff-arth-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #b4945d);
+    margin-bottom: 5px;
+  }
+  .moll-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #c90aeb);
+    margin-bottom: 5px;
+  }
+  .bivalvia-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #890aeb);
+    margin-bottom: 5px;
+  }  
+  .gastropoda-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #ff668f);
+    margin-bottom: 5px;
+  }
+  .nautilodea-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #ff29c6);
+    margin-bottom: 5px;
+  }
+  .undiff-moll-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #bf84c2);
+    margin-bottom: 5px;
+  }
+   .fish-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #3238ef);
+    margin-bottom: 5px;
+  } 
+    .acanthodii-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #7584ff);
+    margin-bottom: 5px;
+  } 
+    .agnatha-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #1f0da4);
+    margin-bottom: 5px;
+  } 
+    .chondrichtyes-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #7900ff);
+    margin-bottom: 5px;
+  } 
+    .conodonta-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #aa65f6);
+    margin-bottom: 5px;
+  } 
+    .osteichthyes-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #710eb3);
+    margin-bottom: 5px;
+  } 
+    .placodermi-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #22bde5);
+    margin-bottom: 5px;
+  } 
+    .undiff-fish-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #2b9bb4);
+    margin-bottom: 5px;
+  } 
+    .algae-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #a5e97d);
+    margin-bottom: 5px;
+  }  
+    .annelida-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #e5c284);
+    margin-bottom: 5px;
+  }  
+    .brachiopoda-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #1b8abe);
+    margin-bottom: 5px;
+  }  
+    .bryozoa-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #f031ff);
+    margin-bottom: 5px;
+  } 
+    .coelenterata-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #8e0fa2);
+    margin-bottom: 5px;
+  }
+    .echinoderm-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #1c4ab9);
+    margin-bottom: 5px;
+  }  
+    .foraminifera-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #f1e83b);
+    margin-bottom: 5px;
+  }  
+    .graptolithina-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #d40c48);
+    margin-bottom: 5px;
+  }  
+    .porifera-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #ff7bac);
+    margin-bottom: 5px;
+  }  
+    .ichnotaxa-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #a49b0d);
+    margin-bottom: 5px;
+  }  
+    .polsp-gradient-bar{
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #e5e1e1, #589036);
+    margin-bottom: 5px;
+  }  
+    .legend div span {
+        border-radius: 50%;
+        display: inline-block;
+        height: 10px;
+        margin-right: 5px;
+        width: 10px;
+    }    
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+    }
+    /*  Body & Map Style Sheet  */
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; };
+
+
+    
+</style>
+
+</head>
+
+<body>
+<div id="map"></div>
+<div class='map-overlay'>
+    <div class='map-overlay-inner'>
+    <h2>Old Red Sandstone <i>Prototaxites</i> Fossils in Relation to Other Fossils</h2>
+    </div>
+    </div>
+
+<div class='legend' id='legend' style='display : none'>
+        <h3>Legend</h3>
+           <label><input type='checkbox' id='prototaxites_box' checked><img src='icons/proto_icon.png' width='12'>   <i>Prototaxites</i></label><br>
+        <h4>Other Fossils Count</h4>
+        <button type='button' class='collapsible' id='plant_button' style='width:100px'>Plants ▼</button>
+        <div class='content'>
+            <label><input type='checkbox' id='plant_box'>All Plants</label>
+            <div class='plant-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>46</span></div>
+            <label><input type='checkbox' id='plant_angiosperms_box'>Angiosperme</label>
+            <div class='angiosperms-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>1</span></div>
+            <label><input type='checkbox' id='plant_bryophyta_box'>Bryophyta</label>
+            <div class='bryophyta-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>4</span></div>
+            <label><input type='checkbox' id='plant_lycophyta_box'>Lycophyta</label>
+            <div class='lycophyta-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>1</span></div>
+            <label><input type='checkbox' id='plant_sphenophyta_box'>Sphenophyta</label>
+            <div class='sphenophyta-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>2</span></div>
+            <label><input type='checkbox' id='plant_undiff_box'>Undifferentiated Plants</label>
+            <div class='undiff-plant-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>46</span></div><br>
+        </div>
+        <br><button type='button' class='collapsible' id='arth_button' style='width:100px'>Arthropoda ▼</button>
+        <div class='content'>
+            <label><input type='checkbox' id='arth_box'>All Arthropoda</label>
+            <div class='arth-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>59</span></div>
+            <label><input type='checkbox' id='arth_chelicerata_box'>Chelicerata</label>
+            <div class='chelicerata-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>33</span></div>
+            <label><input type='checkbox' id='arth_crustacea_box'>Crustacea</label>
+            <div class='crustacea-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>5</span></div>
+            <label><input type='checkbox' id='arth_euthy_box'>Euthycarcinoidea</label>
+            <div class='euthy-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>1</span></div>
+            <label><input type='checkbox' id='arth_myriapoda_box'>Myriapoda</label>
+            <div class='myriapoda-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>34</span></div>
+            <label><input type='checkbox' id='arth_trilobita_box'>Trilobita</label>
+            <div class='trilobita-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>39</span></div>
+            <label><input type='checkbox' id='arth_ostracoda_box'>Ostracoda</label>
+            <div class='ostracoda-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>47</span></div>
+            <label><input type='checkbox' id='arth_undiff_box'>Undifferentiated Arthropods</label>
+            <div class='undiff-arth-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>47</span></div><br>
+        </div>
+        <br><button type='button' class='collapsible' style='width:100px'>Molluca ▼</button>
+        <div class='content'>
+            <label><input type='checkbox' id='moll_box'>All Mollusca</label>
+            <div class='moll-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>94</span></div>
+            <label><input type='checkbox' id='moll_bivalvia_box'>Bivalvia</label>
+            <div class='bivalvia-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>72</span></div>
+            <label><input type='checkbox' id='moll_gastropoda_box'>Gastropoda</label>
+            <div class='gastropoda-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>16</span></div>
+            <label><input type='checkbox' id='moll_nautilodea_box'>Nautilodea</label><br>
+            <div class='nautilodea-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>15</span></div>
+            <label><input type='checkbox' id='moll_undiff_box'>Undifferentiated Mollusks</label>
+            <div class='undiff-moll-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>3</span></div><br>
+        </div>
+        <br><button type='button' class='collapsible' style='width:100px'>Fish ▼</button>
+        <div class='content'>
+            <label><input type='checkbox' id='fish_box'>All Fish</label>
+            <div class='fish-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>152</span></div>
+            <label><input type='checkbox' id='fish_acanthodii_box'>Acanthodii</label>
+            <div class='acanthodii-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>22</span></div>
+            <label><input type='checkbox' id='fish_agnatha_box'>Agnatha</label>
+            <div class='agnatha-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>127</span></div>
+            <label><input type='checkbox' id='fish_chondrichtyes_box'>Chondrichtyes</label>
+            <div class='chondrichtyes-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>1</span></div>
+            <label><input type='checkbox' id='fish_conodonta_box'>Conodonta</label>
+            <div class='conodonta-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>132</span></div>
+            <label><input type='checkbox' id='fish_osteichthyes_box'>Osteichthyes</label>
+            <div class='osteichthyes-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>3</span></div>
+            <label><input type='checkbox' id='fish_placodermi_box'>Placodermi</label>
+            <div class='placodermi-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>30</span></div>
+            <label><input type='checkbox' id='fish_undiff_box'>Undifferentiated Fish</label>
+            <div class='undiff-fish-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>121</span></div><br>
+        </div>
+        <br><button type='button' class='collapsible' style='width:100px'>Other ▼</button>
+        <div class='content'>
+            <label><input type='checkbox' id='oth_algae_box'>Algae</label>
+            <div class='algae-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>1</span></div>
+            <label><input type='checkbox' id='oth_annelida_box'>Annelida</label>
+            <div class='annelida-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>3</span></div>
+            <label><input type='checkbox' id='oth_brachiopoda_box'>Brachiopoda</label>
+            <div class='brachiopoda-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>309</span></div>
+            <label><input type='checkbox' id='oth_bryozoa_box'>Bryozoa</label>
+            <div class='bryozoa-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>4</span></div>
+            <label><input type='checkbox' id='oth_coelenterata_box'>Coelenterata</label>
+            <div class='coelenterata-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>9</span></div>
+            <label><input type='checkbox' id='oth_echinoderm_box'>Echinodermata</label>
+            <div class='echinoderm-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>155</span></div>
+            <label><input type='checkbox' id='oth_foraminifera_box'>Foraminifera</label>
+            <div class='foraminifera-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>10</span></div>
+            <label><input type='checkbox' id='oth_graptolithina_box'>Graptolithina</label>
+            <div class='graptolithina-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>337</span></div>
+            <label><input type='checkbox' id='oth_porifera_box'>Porifera</label>
+            <div class='porifera-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>4</span></div>
+            <label><input type='checkbox' id='oth_ichnotaxa_box'>Ichnotaxa</label>
+            <div class='ichnotaxa-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>3</span></div>
+            <label><input type='checkbox' id='oth_pollenspores_box'>Pollen   and Spores</label>
+            <div class='polsp-gradient-bar'></div>
+            <div class='legend-labels'><span>0</span><span>9</span></div><br>
+        </div>
+
+</div>
+    
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZW1lcnlncmV5MTIxNyIsImEiOiJjbW0xandkcmIwOXc5Mm9weHJtcDRzc3M3In0.s8h5aEk05cXIjBkbCiXwGQ';  //Put your mapbox access token here
+        // Load a new map in the 'map' HTML div
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/emerygrey1217/cmooksre2005f01rgan4w3njk', // Put your mapbox style URL here
+            center: [-6.708, 54.255], // starting position [lng, lat]
+            zoom: 5// starting zoom
+        });
+    
+    
+    
+    map.on('load', function() {
+        map.addLayer({
+        'id': 'prototaxites',
+        'type': 'symbol',
+        'source': {
+            type: 'vector',
+            url: 'mapbox://emerygrey1217.69ntidlx'
+        },
+        'source-layer':'UK_Prototaxites_Shapefile-7v388l',
+        'layout':{
+            'icon-image': ['image', 
+                           'triangle',
+                          {
+                              'params': {
+                                  'background': '#eedf93',
+                                  'stroke': '#7b6f28'
+                              }
+                          }
+                        ],
+            'icon-size': [
+                'interpolate',
+                [
+                    'linear'
+                ],
+                [
+                    'zoom'
+                ],
+                0, 0.1,
+                5, 0.7,
+                22, 3
+            ]
+        }
+        });
+        
+             map.addLayer({
+                'id':'plants',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#18d848',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Plants_Cou'],
+                        0,0,
+                        4,0.25,
+                        12,0.5,
+                        22,0.75,
+                        46,1
+                    ],
+                    'fill-outline-color': '#5d6a5c'
+                },
+            });
+        
+             map.addLayer({
+                'id':'undiff_plants',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#acc874',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Plants__Un'],
+                        0,0,
+                        5,0.25,
+                        13,0.5,
+                        30,0.75,
+                        46,1
+                    ],
+                    'fill-outline-color': '#5d6a5c'
+                },
+            });
+        
+            map.addLayer({
+                'id':'angiosperms',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#e5fd72',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Plants__An'],
+                        0,0,
+                        1,1
+                    ],
+                    'fill-outline-color': '#5d6a5c'
+                },
+            });   
+        
+            map.addLayer({
+                'id':'bryophyta',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#c7d20e',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Plants__Br'],
+                        0,0,
+                        4,1
+                    ],
+                    'fill-outline-color': '#5d6a5c'
+                },
+            });   
+              
+    
+             map.addLayer({
+                'id':'lycophyta',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#72d20e',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Plants__Ly'],
+                        0,0,
+                        1,1
+                    ],
+                    'fill-outline-color': '#5d6a5c'
+                },
+            });  
+        
+             map.addLayer({
+                'id':'sphenophyta',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#00b426',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Plants__Sp'],
+                        0,0,
+                        2,1
+                    ],
+                    'fill-outline-color': '#5d6a5c'
+                },
+            });
+        
+              map.addLayer({
+                'id':'arthropods',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#f5a50f',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropoda'],
+                        0,0,
+                        16,0.25,
+                        24,0.5,
+                        38,0.75,
+                        59,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });  
+        
+             map.addLayer({
+                'id':'chelicerata',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#b65e00',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_1'],
+                        0,0,
+                        2,0.25,
+                        4,0.5,
+                        6,0.75,
+                        33,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });
+        
+              map.addLayer({
+                'id':'crustacea',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#fcb459',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_2'],
+                        0,0,
+                        1,0.3,
+                        2,0.6,
+                        5,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            }); 
+        
+             map.addLayer({
+                'id':'euthycarcinoidea',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#f21313',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_3'],
+                        0,0,
+                        1,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });
+        
+             map.addLayer({
+                'id':'myriapoda',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#ff5656',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_4'],
+                        0,0,
+                        1,0.5,
+                        34,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });
+        
+             map.addLayer({
+                'id':'trilobita',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#9f0505',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_5'],
+                        0,0,
+                        5,0.25,
+                        12,0.5,
+                        28,0.75,
+                        39,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });
+        
+             map.addLayer({
+                'id':'ostracoda',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#f27a18',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_6'],
+                        0,0,
+                        5,0.25,
+                        13,0.5,
+                        28,0.75,
+                        47,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });
+        
+             map.addLayer({
+                'id':'undiff_arth',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#b4945d',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Arthropo_7'],
+                        0,0,
+                        4,1
+                    ],
+                    'fill-outline-color': '#9c7407'
+                },
+            });
+         
+       
+            map.addLayer({
+                'id':'mollusks',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#c90aeb',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Mollusca_C'],
+                        0,0,
+                        8,0.25,
+                        25,0.5,
+                        50,0.75,
+                        94,1
+                    ],
+                    'fill-outline-color': '#5c5260'
+                },
+            });
+        
+            map.addLayer({
+                'id':'undiff_moll',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#bf84c2',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Mollusca_2'],
+                        0,0,
+                        3,1
+                    ],
+                    'fill-outline-color': '#5c5260'
+                },
+            });
+        
+            map.addLayer({
+                'id':'bivalvia',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#890aeb',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Mollusca__'],
+                        0,0,
+                        9,0.25,
+                        20,0.5,
+                        42,0.75,
+                        72,1
+                    ],
+                    'fill-outline-color': '#5c5260'
+                },
+            });
+        
+             map.addLayer({
+                'id':'gastropoda',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#ff668f',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Mollusca_1'],
+                        0,0,
+                        2,0.25,
+                        7,0.5,
+                        12,0.75,
+                        16,1
+                    ],
+                    'fill-outline-color': '#5c5260'
+                },
+            });   
+        
+                map.addLayer({
+                'id':'nautilodea',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#ff29c6',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Mollusca_3'],
+                        0,0,
+                        4,0.25,
+                        8,0.5,
+                        12,0.75,
+                        15,1
+                    ],
+                    'fill-outline-color': '#5c5260'
+                },
+            });
+        
+        
+             map.addLayer({
+                'id':'fish',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#3238ef',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish_Count'],
+                        0,0,
+                        10,0.25,
+                        38,0.5,
+                        100,0.75,
+                        152,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'acanthodii',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#7584ff',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish__Acan'],
+                        0,0,
+                        4,0.25,
+                        8,0.5,
+                        14,0.75,
+                        22,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'agnatha',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#1f0da4',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish__Agna'],
+                        0,0,
+                        2,0.25,
+                        9,0.5,
+                        13,0.75,
+                        127,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'chondrichtyes',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#7900ff',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish__Chon'],
+                        0,0,
+                        1,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'conodonta',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#aa65f6',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Conodonta_'],
+                        0,0,
+                        7,0.25,
+                        26,0.5,
+                        82,0.75,
+                        132,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'osteichthyes',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#710eb3',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish__Oste'],
+                        0,0,
+                        3,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'placodermi',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#22bde5',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish__Plac'],
+                        0,0,
+                        2,0.25,
+                        4,0.5,
+                        8,0.75,
+                        30,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'undiff_fish',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#2b9bb4',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Fish__Plac'],
+                        0,0,
+                        10,0.25,
+                        21,0.5,
+                        73,0.75,
+                        121,1
+                    ],
+                    'fill-outline-color': '#3d4652'
+                },
+            });
+        
+             map.addLayer({
+                'id':'algae',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#a5e97d',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Algae_Coun'],
+                        0,0,
+                        1,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'annelida',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#e5c284',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Annelida_C'],
+                        0,0,
+                        1,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+              map.addLayer({
+                'id':'brachiopoda',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#1b8abe',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Brachiopod'],
+                        0,0,
+                        12,0.25,
+                        43,0.5,
+                        100,0.75,
+                        309,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+                map.addLayer({
+                'id':'bryozoa',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#f031ff',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Bryozoa_Co'],
+                        0,0,
+                        4,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'coelenterata',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#8e0fa2',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Coelentera'],
+                        0,0,
+                        2,0.25,
+                        4,0.5,
+                        7,0.75,
+                        9,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'echinoderm',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#1c4ab9',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Echinoderm'],
+                        0,0,
+                        4,0.25,
+                        7,0.5,
+                        20,0.75,
+                        155,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'foraminifera',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#f1e83b',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Foraminife'],
+                        0,0,
+                        10,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'graptolithina',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#ef0b4f',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Graptilith'],
+                        0,0,
+                        11,0.25,
+                        84,0.5,
+                        230,0.75,
+                        337,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'porifera',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#ff7bac',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Porifera_C'],
+                        0,0,
+                        3,0.5,
+                        4,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'ichnotaxa',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#a49b0d',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Ichnotaxa_'],
+                        0,0,
+                        3,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+             map.addLayer({
+                'id':'pollen_spores',
+                'type':'fill',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://emerygrey1217.5fo1uvyl' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'ORS_Bedrock_and_Fossils_shp-7nzluo', // name of tilesets
+                'layout':{
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'fill-color':'#589036',
+                    'fill-opacity':[
+                        'interpolate',
+                        ['linear'],
+                        ['get','Pollen_and'],
+                        0,0,
+                        1,0.25,
+                        3,0.5,
+                        5,0.75,
+                        9,1
+                    ],
+                    'fill-outline-color': '#464444'
+                },
+            });
+        
+        const Legend = document.getElementById('legend');
+            Legend.style.display = 'block';
+        
+        const prototaxites_checkbox = document.getElementById('prototaxites_box');
+            
+        prototaxites_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('prototaxites', 'visibility', visibility);
+        });
+        
+        const plant_checkbox = document.getElementById('plant_box');
+            
+        plant_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('plants', 'visibility', visibility);
+        });
+        
+        const angiosperm_checkbox = document.getElementById('plant_angiosperms_box');
+            
+        angiosperm_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('angiosperms', 'visibility', visibility);
+        });
+        
+        const bryophyta_checkbox = document.getElementById('plant_bryophyta_box');
+            
+        bryophyta_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('bryophyta', 'visibility', visibility);
+        });
+        
+        const lycophyta_checkbox = document.getElementById('plant_lycophyta_box');
+            
+        lycophyta_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('lycophyta', 'visibility', visibility);
+        });
+        
+        const sphenophyta_checkbox = document.getElementById('plant_sphenophyta_box');
+            
+        sphenophyta_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('sphenophyta', 'visibility', visibility);
+        });
+        
+        const undiff_plant_checkbox = document.getElementById('plant_undiff_box');
+            
+        undiff_plant_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('undiff_plants', 'visibility', visibility);
+        });
+        
+        const arthropods_checkbox = document.getElementById('arth_box');
+            
+        arthropods_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('arthropods', 'visibility', visibility);
+        });
+        
+        const chelicerata_checkbox = document.getElementById('arth_chelicerata_box');
+            
+        chelicerata_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('chelicerata', 'visibility', visibility);
+        });
+        
+        const crustacea_checkbox = document.getElementById('arth_crustacea_box');
+            
+        crustacea_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('crustacea', 'visibility', visibility);
+        });
+        
+        const euthy_checkbox = document.getElementById('arth_euthy_box');
+            
+        euthy_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('euthycarcinoidea', 'visibility', visibility);
+        });
+        
+        const myriapoda_checkbox = document.getElementById('arth_myriapoda_box');
+            
+        myriapoda_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('myriapoda', 'visibility', visibility);
+        });
+        
+        const trilobita_checkbox = document.getElementById('arth_trilobita_box');
+            
+        trilobita_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('trilobita', 'visibility', visibility);
+        });
+        
+        const ostracoda_checkbox = document.getElementById('arth_ostracoda_box');
+            
+        ostracoda_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('ostracoda', 'visibility', visibility);
+        });
+        
+        const undiff_arthropods_checkbox = document.getElementById('arth_undiff_box');
+            
+        undiff_arthropods_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('undiff_arth', 'visibility', visibility);
+        });
+        
+        const mollusks_checkbox = document.getElementById('moll_box');
+            
+        mollusks_checkbox.addEventListener('change', (e) => {
+        // Replace 'your-layer-id' with the actual ID of your Mapbox layer
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('mollusks', 'visibility', visibility);
+        });
+        
+        const bivalvia_checkbox = document.getElementById('moll_bivalvia_box');
+        
+        bivalvia_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('bivalvia', 'visibility', visibility)
+        });
+        
+        const gastropoda_checkbox = document.getElementById('moll_gastropoda_box');
+        
+        gastropoda_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('gastropoda', 'visibility', visibility)
+        });
+        
+        const nautilodea_checkbox = document.getElementById('moll_nautilodea_box');
+        
+        nautilodea_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('nautilodea', 'visibility', visibility)
+        });
+        
+        const undiff_mollusks_checkbox = document.getElementById('moll_undiff_box');
+        
+        undiff_mollusks_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('undiff_moll', 'visibility', visibility)
+        });
+        
+        const fish_checkbox = document.getElementById('fish_box');
+        
+        fish_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('fish', 'visibility', visibility)
+        });
+        
+        const acanthodii_checkbox = document.getElementById('fish_acanthodii_box');
+        
+        acanthodii_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('acanthodii', 'visibility', visibility)
+        });
+        
+        const agnatha_checkbox = document.getElementById('fish_agnatha_box');
+        
+        agnatha_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('agnatha', 'visibility', visibility)
+        });
+        
+        const chondrichtyes_checkbox = document.getElementById('fish_chondrichtyes_box');
+        
+        chondrichtyes_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('chondrichtyes', 'visibility', visibility)
+        });
+        
+        const conodonta_checkbox = document.getElementById('fish_conodonta_box');
+        
+        conodonta_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('conodonta', 'visibility', visibility)
+        });
+        
+        const osteichthyes_checkbox = document.getElementById('fish_osteichthyes_box');
+        
+        osteichthyes_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('osteichthyes', 'visibility', visibility)
+        });
+        
+        const placodermi_checkbox = document.getElementById('fish_placodermi_box');
+        
+        placodermi_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('placodermi', 'visibility', visibility)
+        });
+        
+        const undiff_fish_checkbox = document.getElementById('fish_undiff_box');
+        
+        undiff_fish_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('undiff_fish', 'visibility', visibility)
+        });
+        
+        const algae_checkbox = document.getElementById('oth_algae_box');
+        
+        algae_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('algae', 'visibility', visibility)
+        });
+        
+        const annelida_checkbox = document.getElementById('oth_annelida_box');
+        
+        annelida_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('annelida', 'visibility', visibility)
+        });
+        
+        const brachiopoda_checkbox = document.getElementById('oth_brachiopoda_box');
+        
+        brachiopoda_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('brachiopoda', 'visibility', visibility)
+        });
+        
+        const bryozoa_checkbox = document.getElementById('oth_bryozoa_box');
+        
+        bryozoa_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('bryozoa', 'visibility', visibility)
+        });
+        
+        const coelenterata_checkbox = document.getElementById('oth_coelenterata_box');
+        
+        coelenterata_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('coelenterata', 'visibility', visibility)
+        });
+        
+        const echinoderm_checkbox = document.getElementById('oth_echinoderm_box');
+        
+        echinoderm_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('echinoderm', 'visibility', visibility)
+        });
+        
+        const foraminifera_checkbox = document.getElementById('oth_foraminifera_box');
+        
+        foraminifera_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('foraminifera', 'visibility', visibility)
+        });
+        
+        const graptolithina_checkbox = document.getElementById('oth_graptolithina_box');
+        
+        graptolithina_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('graptolithina', 'visibility', visibility)
+        });
+        
+        const porifera_checkbox = document.getElementById('oth_porifera_box');
+        
+        porifera_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('porifera', 'visibility', visibility)
+        });
+        
+        const ichnotaxa_checkbox = document.getElementById('oth_ichnotaxa_box');
+        
+        ichnotaxa_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('ichnotaxa', 'visibility', visibility)
+        });
+        
+        const pollen_spores_checkbox = document.getElementById('oth_pollenspores_box');
+        
+        pollen_spores_checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            
+        map.setLayoutProperty('pollen_spores', 'visibility', visibility);
+        })
+    });
+    
+    const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: [0,-7]
+});
+   map.on('mouseenter', 'prototaxites', (e) => {
+    map.getCanvas().style.cursor = 'pointer'; // Change cursor to pointer
+
+    // Access properties and coordinates from the feature
+    const props = e.features[0].properties;
+    const coords = e.features[0].geometry.coordinates.slice();
+
+    // Create custom HTML with multiple details
+    const content = `
+        <div>
+            <h3>${props.SPECIES}</h3>
+            <p>Stage: ${props.EPOCH}; ${props.STAGE}</p>
+            <p>Paleo Environment: ${props.PAL_CLIM} ${props.PAL_ENV}</p>
+            <p>Rock Types: ${props.PRIM_COMP} ${props.SEC_COMP} ${props.THIR_COMP}; ${props.PRIM_ROCK} ${props.SEC_ROCK} ${props.THIRD_ROCK} </p>
+        </div>
+    `;
+    
+    // Add popup to map
+    popup.setLngLat(coords).setHTML(content).addTo(map);
+}); 
+    map.on('mouseenter', 'prototaxites', function () {
+        map.getCanvas().style.cursor = 'pointer';
+   });
+    map.on('mouseleave', 'prototaxites', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+            });
+</script>
+
+
+</body>
+</html>

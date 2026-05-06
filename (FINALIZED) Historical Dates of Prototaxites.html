@@ -1,0 +1,126 @@
+<!-- HTML, HEADER, and STYLE -->
+<html>
+<head>
+<meta charset="utf-8" />
+<title> Draft for Timeline Scale of Prototaxite Fossil Discoveries </title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"> </script>
+<style>
+    body {
+        margin: 0; 
+    }
+	#map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    .map-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        background: white;
+        padding: 20px;
+        width: 280px;
+        height: 150px;
+        z-index: 1;
+        font-size: 16px;
+        border: 1px solid black;
+    }
+    .legend-key {
+        display: inline-block;
+        top: 10px;
+        width: 50px;
+        height: 50px;
+        margin-right: 16px;
+        border: 1px solid black;
+    }
+    .slider-container {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid black;
+        width: 260px;
+        padding: 10px;
+    }
+    input[type="range"] {
+        width: 100%;
+    }
+</style>
+</head>
+<!-- End of HEADER, and STYLE -->
+
+<!-- Beginning of BODY -->
+<body>
+
+    <!-- Map Here -->
+    <div id="map"></div>
+
+    <!-- Map Legend -->
+    <div class="map-overlay">
+        <table>
+            <tr>
+                <th> Prototaxites Timeline </th>
+                <th> Oldest Fossils (~433 MYA) </th>
+                <th> Youngest Fossils (~393 MYA) </th>
+            </tr>
+    <div class = "slider-container">
+        <label>Time (MYA): <span id="slider-value">433 </span></label>
+        <input type="range" min="393" max="434" step="1" value="433" id="slider_year_filter">
+    </div>
+        </table>
+    </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcmNsb21lIiwiYSI6ImNtbTEwZjh1YTA0Y2sydHB4djNueHhrYzQifQ.EO1EzK6iEWQWg7cvszpkYA';
+
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/starclome/cmooq7mii005t01so92nd7j8c',
+                center: [2, 54],
+                zoom: 4
+            });
+
+            map.on('load', function() {
+                map.addLayer({
+                    'id':'uk_prototaxties_points',
+                    'type':'circle',
+                    'source':{
+                        type:'vector',
+                        url:'mapbox://starclome.5i4j7exa',
+                    },
+                    'source-layer':'UK_Prototaxites_WGS84-bqidu0',
+                    'layout':{
+                        'visibility':'visible',
+                    },
+                    'paint':{
+                        'circle-color': '#eedf93',
+                        'circle-opacity': 1,
+                        'circle-stroke-width':2,
+                        'circle-stroke-color':'black',
+                        'circle-stroke-opacity':1,
+                        'circle-radius': 4
+                    } 
+                });
+                    const slider = document.getElementById("slider_year_filter");
+                    const label = document.getElementById("slider-value");
+
+                slider.addEventListener("input", function(e) {
+                    const value = parseFloat(e.target.value);
+                    label.textContent = value;
+
+                    map.setFilter('uk_prototaxties_points', [
+                        '<=',
+                        ['get', 'AVG_MYA'],
+                        value
+                    ]);
+                });
+            });
+    </script>
+
+</body>
+
+</html>
